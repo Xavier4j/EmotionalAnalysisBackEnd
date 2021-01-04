@@ -9,7 +9,7 @@ public class Phone {
 
     private LocalDateTime releaseTime;
 
-    private Long comentNum;
+    private Long commentNum;
 
     public String getId() {
         return id;
@@ -35,11 +35,11 @@ public class Phone {
         this.releaseTime = releaseTime;
     }
 
-    public Long getComentNum() {
-        return comentNum;
+    public Long getCommentNum() {
+        return commentNum;
     }
 
-    public void setComentNum(Long comentNum) {
-        this.comentNum = comentNum;
+    public void setCommentNum(Long commentNum) {
+        this.commentNum = commentNum;
     }
 }

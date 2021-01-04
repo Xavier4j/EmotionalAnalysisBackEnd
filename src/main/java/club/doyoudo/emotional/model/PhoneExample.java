@@ -305,63 +305,63 @@ public class PhoneExample {
             return (Criteria) this;
         }
 
-        public Criteria andComentNumIsNull() {
-            addCriterion("coment_num is null");
+        public Criteria andCommentNumIsNull() {
+            addCriterion("comment_num is null");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumIsNotNull() {
-            addCriterion("coment_num is not null");
+        public Criteria andCommentNumIsNotNull() {
+            addCriterion("comment_num is not null");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumEqualTo(Long value) {
-            addCriterion("coment_num =", value, "comentNum");
+        public Criteria andCommentNumEqualTo(Long value) {
+            addCriterion("comment_num =", value, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumNotEqualTo(Long value) {
-            addCriterion("coment_num <>", value, "comentNum");
+        public Criteria andCommentNumNotEqualTo(Long value) {
+            addCriterion("comment_num <>", value, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumGreaterThan(Long value) {
-            addCriterion("coment_num >", value, "comentNum");
+        public Criteria andCommentNumGreaterThan(Long value) {
+            addCriterion("comment_num >", value, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumGreaterThanOrEqualTo(Long value) {
-            addCriterion("coment_num >=", value, "comentNum");
+        public Criteria andCommentNumGreaterThanOrEqualTo(Long value) {
+            addCriterion("comment_num >=", value, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumLessThan(Long value) {
-            addCriterion("coment_num <", value, "comentNum");
+        public Criteria andCommentNumLessThan(Long value) {
+            addCriterion("comment_num <", value, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumLessThanOrEqualTo(Long value) {
-            addCriterion("coment_num <=", value, "comentNum");
+        public Criteria andCommentNumLessThanOrEqualTo(Long value) {
+            addCriterion("comment_num <=", value, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumIn(List<Long> values) {
-            addCriterion("coment_num in", values, "comentNum");
+        public Criteria andCommentNumIn(List<Long> values) {
+            addCriterion("comment_num in", values, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumNotIn(List<Long> values) {
-            addCriterion("coment_num not in", values, "comentNum");
+        public Criteria andCommentNumNotIn(List<Long> values) {
+            addCriterion("comment_num not in", values, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumBetween(Long value1, Long value2) {
-            addCriterion("coment_num between", value1, value2, "comentNum");
+        public Criteria andCommentNumBetween(Long value1, Long value2) {
+            addCriterion("comment_num between", value1, value2, "commentNum");
             return (Criteria) this;
         }
 
-        public Criteria andComentNumNotBetween(Long value1, Long value2) {
-            addCriterion("coment_num not between", value1, value2, "comentNum");
+        public Criteria andCommentNumNotBetween(Long value1, Long value2) {
+            addCriterion("comment_num not between", value1, value2, "commentNum");
             return (Criteria) this;
         }
     }

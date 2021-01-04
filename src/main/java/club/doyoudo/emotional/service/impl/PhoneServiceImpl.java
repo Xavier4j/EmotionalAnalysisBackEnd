@@ -41,7 +41,7 @@ public class PhoneServiceImpl implements PhoneService {
         String uuid = UUID.randomUUID().toString().replaceAll( "-", "" );
         phone.setId( uuid );
         LocalDateTime time = LocalDateTime.now();
-        //flaggg phone.setReleaseTime( time );
+        phone.setReleaseTime( time );
         int i = phoneMapper.insertSelective( phone );
         if (i == 1) {
             return new ResponseWrapper( true, 200, "新增成功！", uuid );
@@ -66,9 +66,9 @@ public class PhoneServiceImpl implements PhoneService {
         Phone phone = new Phone();
         phone.setId( p.getId() );
         if (flag) {
-            //flaggg phone.setCommentNum( p.getCommentNum() + 1 );
+            phone.setCommentNum( p.getCommentNum() + 1 );
         } else {
-            //flaggg phone.setCommentNum( p.getCommentNum() - 1 );
+            phone.setCommentNum( p.getCommentNum() - 1 );
         }
         return phoneMapper.updateByPrimaryKeySelective( phone );
     }
@@ -120,7 +120,7 @@ public class PhoneServiceImpl implements PhoneService {
     @Override
     public List<Phone> selectPhoneListById(List<String> phoneIdList) {
         List<Phone> phoneList = phoneIdList.stream().map( id -> phoneMapper.selectByPrimaryKey( id ) ).collect( Collectors.toList() );
-        //flaggg phoneList.sort( (o1, o2) -> o2.getReleaseTime().compareTo( o1.getReleaseTime() ) );
+        phoneList.sort( (o1, o2) -> o2.getReleaseTime().compareTo( o1.getReleaseTime() ) );
         return phoneList;
     }
 

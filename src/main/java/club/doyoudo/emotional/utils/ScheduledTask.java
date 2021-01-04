@@ -1,6 +1,5 @@
 package club.doyoudo.emotional.utils;
 
-
 import club.doyoudo.emotional.service.AnalysisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

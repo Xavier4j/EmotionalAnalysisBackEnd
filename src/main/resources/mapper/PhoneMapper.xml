@@ -5,7 +5,7 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="model" jdbcType="VARCHAR" property="model" />
     <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
-    <result column="coment_num" jdbcType="BIGINT" property="comentNum" />
+    <result column="comment_num" jdbcType="BIGINT" property="commentNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, model, release_time, coment_num
+    id, model, release_time, comment_num
   </sql>
   <select id="selectByExample" parameterType="club.doyoudo.emotional.model.PhoneExample" resultMap="BaseResultMap">
     select
@@ -100,9 +100,9 @@
   </delete>
   <insert id="insert" parameterType="club.doyoudo.emotional.model.Phone">
     insert into phone (id, model, release_time, 
-      coment_num)
+      comment_num)
     values (#{id,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{releaseTime,jdbcType=TIMESTAMP}, 
-      #{comentNum,jdbcType=BIGINT})
+      #{commentNum,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="club.doyoudo.emotional.model.Phone">
     insert into phone
@@ -116,8 +116,8 @@
       <if test="releaseTime != null">
         release_time,
       </if>
-      <if test="comentNum != null">
-        coment_num,
+      <if test="commentNum != null">
+        comment_num,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -130,8 +130,8 @@
       <if test="releaseTime != null">
         #{releaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="comentNum != null">
-        #{comentNum,jdbcType=BIGINT},
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -153,8 +153,8 @@
       <if test="record.releaseTime != null">
         release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.comentNum != null">
-        coment_num = #{record.comentNum,jdbcType=BIGINT},
+      <if test="record.commentNum != null">
+        comment_num = #{record.commentNum,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -166,7 +166,7 @@
     set id = #{record.id,jdbcType=VARCHAR},
       model = #{record.model,jdbcType=VARCHAR},
       release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
-      coment_num = #{record.comentNum,jdbcType=BIGINT}
+      comment_num = #{record.commentNum,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,8 +180,8 @@
       <if test="releaseTime != null">
         release_time = #{releaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="comentNum != null">
-        coment_num = #{comentNum,jdbcType=BIGINT},
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -190,7 +190,7 @@
     update phone
     set model = #{model,jdbcType=VARCHAR},
       release_time = #{releaseTime,jdbcType=TIMESTAMP},
-      coment_num = #{comentNum,jdbcType=BIGINT}
+      comment_num = #{commentNum,jdbcType=BIGINT}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
