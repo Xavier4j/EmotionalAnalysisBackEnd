@@ -1,0 +1,10 @@
+2021-01-04 04:00:00.047  INFO 12708 --- [scheduling-1] c.doyoudo.emotional.utils.ScheduledTask  : analyseCommentTagDailyTask 开始 ByCorn：2021-01-04T04:00:00.047892300
+2021-01-04 04:00:00.131 DEBUG 12708 --- [scheduling-1] c.d.e.m.PhoneMapper.selectByExample      : ==>  Preparing: select id, model, release_time, coment_num from phone WHERE ( release_time between ? and ? ) 
+2021-01-04 04:00:00.213 DEBUG 12708 --- [scheduling-1] c.d.e.m.PhoneMapper.selectByExample      : ==> Parameters: 2021-01-03T00:00(LocalDateTime), 2021-01-04T00:00(LocalDateTime)
+2021-01-04 04:00:00.231 DEBUG 12708 --- [scheduling-1] c.d.e.m.PhoneMapper.selectByExample      : <==      Total: 0
+2021-01-04 04:00:00.233  INFO 12708 --- [scheduling-1] c.doyoudo.emotional.utils.ScheduledTask  : analyseCommentTagDailyTask 结束 ByCorn：2021-01-04T04:00:00.233422100
+2021-01-04 04:00:00.234  INFO 12708 --- [scheduling-1] c.doyoudo.emotional.utils.ScheduledTask  : analyseSentimentDailyTask 开始 ByCorn：2021-01-04T04:00:00.234392300
+2021-01-04 04:00:00.235 DEBUG 12708 --- [scheduling-1] c.d.e.m.CommentMapper.selectByExample    : ==>  Preparing: select id, phone_id, content, create_time, is_delete from comment WHERE ( create_time between ? and ? ) 
+2021-01-04 04:00:00.236 DEBUG 12708 --- [scheduling-1] c.d.e.m.CommentMapper.selectByExample    : ==> Parameters: 2021-01-03T00:00(LocalDateTime), 2021-01-04T00:00(LocalDateTime)
+2021-01-04 04:00:00.237 DEBUG 12708 --- [scheduling-1] c.d.e.m.CommentMapper.selectByExample    : <==      Total: 0
+2021-01-04 04:00:00.237  INFO 12708 --- [scheduling-1] c.doyoudo.emotional.utils.ScheduledTask  : analyseSentimentDailyTask 结束 ByCorn：2021-01-04T04:00:00.237383900

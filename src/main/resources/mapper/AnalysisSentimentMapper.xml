@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.doyoudo.emotional.mapper.AnalysisSentimentMapper">
+  <resultMap id="BaseResultMap" type="club.doyoudo.emotional.model.AnalysisSentiment">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="phone_id" jdbcType="VARCHAR" property="phoneId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="sentiment" jdbcType="INTEGER" property="sentiment" />
+    <result column="positive_prob" jdbcType="DOUBLE" property="positiveProb" />
+    <result column="negative_prob" jdbcType="DOUBLE" property="negativeProb" />
+    <result column="confidence" jdbcType="DOUBLE" property="confidence" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, phone_id, content, create_time, sentiment, positive_prob, negative_prob, confidence
+  </sql>
+  <select id="selectByExample" parameterType="club.doyoudo.emotional.model.AnalysisSentimentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from analysis_sentiment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from analysis_sentiment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from analysis_sentiment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="club.doyoudo.emotional.model.AnalysisSentimentExample">
+    delete from analysis_sentiment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
+    insert into analysis_sentiment (id, phone_id, content, 
+      create_time, sentiment, positive_prob, 
+      negative_prob, confidence)
+    values (#{id,jdbcType=VARCHAR}, #{phoneId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{sentiment,jdbcType=INTEGER}, #{positiveProb,jdbcType=DOUBLE}, 
+      #{negativeProb,jdbcType=DOUBLE}, #{confidence,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
+    insert into analysis_sentiment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phoneId != null">
+        phone_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="sentiment != null">
+        sentiment,
+      </if>
+      <if test="positiveProb != null">
+        positive_prob,
+      </if>
+      <if test="negativeProb != null">
+        negative_prob,
+      </if>
+      <if test="confidence != null">
+        confidence,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneId != null">
+        #{phoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sentiment != null">
+        #{sentiment,jdbcType=INTEGER},
+      </if>
+      <if test="positiveProb != null">
+        #{positiveProb,jdbcType=DOUBLE},
+      </if>
+      <if test="negativeProb != null">
+        #{negativeProb,jdbcType=DOUBLE},
+      </if>
+      <if test="confidence != null">
+        #{confidence,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="club.doyoudo.emotional.model.AnalysisSentimentExample" resultType="java.lang.Long">
+    select count(*) from analysis_sentiment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update analysis_sentiment
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneId != null">
+        phone_id = #{record.phoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sentiment != null">
+        sentiment = #{record.sentiment,jdbcType=INTEGER},
+      </if>
+      <if test="record.positiveProb != null">
+        positive_prob = #{record.positiveProb,jdbcType=DOUBLE},
+      </if>
+      <if test="record.negativeProb != null">
+        negative_prob = #{record.negativeProb,jdbcType=DOUBLE},
+      </if>
+      <if test="record.confidence != null">
+        confidence = #{record.confidence,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update analysis_sentiment
+    set id = #{record.id,jdbcType=VARCHAR},
+      phone_id = #{record.phoneId,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      sentiment = #{record.sentiment,jdbcType=INTEGER},
+      positive_prob = #{record.positiveProb,jdbcType=DOUBLE},
+      negative_prob = #{record.negativeProb,jdbcType=DOUBLE},
+      confidence = #{record.confidence,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
+    update analysis_sentiment
+    <set>
+      <if test="phoneId != null">
+        phone_id = #{phoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sentiment != null">
+        sentiment = #{sentiment,jdbcType=INTEGER},
+      </if>
+      <if test="positiveProb != null">
+        positive_prob = #{positiveProb,jdbcType=DOUBLE},
+      </if>
+      <if test="negativeProb != null">
+        negative_prob = #{negativeProb,jdbcType=DOUBLE},
+      </if>
+      <if test="confidence != null">
+        confidence = #{confidence,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
+    update analysis_sentiment
+    set phone_id = #{phoneId,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      sentiment = #{sentiment,jdbcType=INTEGER},
+      positive_prob = #{positiveProb,jdbcType=DOUBLE},
+      negative_prob = #{negativeProb,jdbcType=DOUBLE},
+      confidence = #{confidence,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.doyoudo.emotional.mapper.AnalysisCommentTagMapper">
+  <resultMap id="BaseResultMap" type="club.doyoudo.emotional.model.AnalysisCommentTag">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="phone_id" jdbcType="VARCHAR" property="phoneId" />
+    <result column="comment_id" jdbcType="VARCHAR" property="commentId" />
+    <result column="sentiment" jdbcType="INTEGER" property="sentiment" />
+    <result column="adj" jdbcType="VARCHAR" property="adj" />
+    <result column="prop" jdbcType="VARCHAR" property="prop" />
+    <result column="abstract_text" jdbcType="VARCHAR" property="abstractText" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, phone_id, comment_id, sentiment, adj, prop, abstract_text
+  </sql>
+  <select id="selectByExample" parameterType="club.doyoudo.emotional.model.AnalysisCommentTagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from analysis_comment_tag
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from analysis_comment_tag
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from analysis_comment_tag
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="club.doyoudo.emotional.model.AnalysisCommentTagExample">
+    delete from analysis_comment_tag
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="club.doyoudo.emotional.model.AnalysisCommentTag">
+    insert into analysis_comment_tag (id, phone_id, comment_id, 
+      sentiment, adj, prop, 
+      abstract_text)
+    values (#{id,jdbcType=VARCHAR}, #{phoneId,jdbcType=VARCHAR}, #{commentId,jdbcType=VARCHAR}, 
+      #{sentiment,jdbcType=INTEGER}, #{adj,jdbcType=VARCHAR}, #{prop,jdbcType=VARCHAR}, 
+      #{abstractText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="club.doyoudo.emotional.model.AnalysisCommentTag">
+    insert into analysis_comment_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phoneId != null">
+        phone_id,
+      </if>
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="sentiment != null">
+        sentiment,
+      </if>
+      <if test="adj != null">
+        adj,
+      </if>
+      <if test="prop != null">
+        prop,
+      </if>
+      <if test="abstractText != null">
+        abstract_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneId != null">
+        #{phoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null">
+        #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="sentiment != null">
+        #{sentiment,jdbcType=INTEGER},
+      </if>
+      <if test="adj != null">
+        #{adj,jdbcType=VARCHAR},
+      </if>
+      <if test="prop != null">
+        #{prop,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractText != null">
+        #{abstractText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="club.doyoudo.emotional.model.AnalysisCommentTagExample" resultType="java.lang.Long">
+    select count(*) from analysis_comment_tag
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update analysis_comment_tag
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneId != null">
+        phone_id = #{record.phoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentId != null">
+        comment_id = #{record.commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sentiment != null">
+        sentiment = #{record.sentiment,jdbcType=INTEGER},
+      </if>
+      <if test="record.adj != null">
+        adj = #{record.adj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prop != null">
+        prop = #{record.prop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abstractText != null">
+        abstract_text = #{record.abstractText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update analysis_comment_tag
+    set id = #{record.id,jdbcType=VARCHAR},
+      phone_id = #{record.phoneId,jdbcType=VARCHAR},
+      comment_id = #{record.commentId,jdbcType=VARCHAR},
+      sentiment = #{record.sentiment,jdbcType=INTEGER},
+      adj = #{record.adj,jdbcType=VARCHAR},
+      prop = #{record.prop,jdbcType=VARCHAR},
+      abstract_text = #{record.abstractText,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="club.doyoudo.emotional.model.AnalysisCommentTag">
+    update analysis_comment_tag
+    <set>
+      <if test="phoneId != null">
+        phone_id = #{phoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null">
+        comment_id = #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="sentiment != null">
+        sentiment = #{sentiment,jdbcType=INTEGER},
+      </if>
+      <if test="adj != null">
+        adj = #{adj,jdbcType=VARCHAR},
+      </if>
+      <if test="prop != null">
+        prop = #{prop,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractText != null">
+        abstract_text = #{abstractText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="club.doyoudo.emotional.model.AnalysisCommentTag">
+    update analysis_comment_tag
+    set phone_id = #{phoneId,jdbcType=VARCHAR},
+      comment_id = #{commentId,jdbcType=VARCHAR},
+      sentiment = #{sentiment,jdbcType=INTEGER},
+      adj = #{adj,jdbcType=VARCHAR},
+      prop = #{prop,jdbcType=VARCHAR},
+      abstract_text = #{abstractText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
