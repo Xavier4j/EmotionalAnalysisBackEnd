@@ -118,6 +118,11 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
+    public List<Phone> selectPhoneListByExample(PhoneExample phoneExample) {
+        return phoneMapper.selectByExample( phoneExample );
+    }
+
+    @Override
     public List<Phone> selectPhoneListById(List<String> phoneIdList) {
         List<Phone> phoneList = phoneIdList.stream().map( id -> phoneMapper.selectByPrimaryKey( id ) ).collect( Collectors.toList() );
         phoneList.sort( (o1, o2) -> o2.getReleaseTime().compareTo( o1.getReleaseTime() ) );

@@ -1,6 +1,7 @@
 package club.doyoudo.emotional.service;
 
 import club.doyoudo.emotional.model.Phone;
+import club.doyoudo.emotional.model.PhoneExample;
 import club.doyoudo.emotional.pojo.ResponseWrapper;
 import com.github.pagehelper.PageInfo;
 
@@ -18,6 +19,8 @@ public interface PhoneService {
     ResponseWrapper selectPhoneById(String phoneId);
 
     Phone selectPhoneById1(String phoneId);
+
+    List<Phone> selectPhoneListByExample(PhoneExample phoneExample);
 
     List<Phone> selectPhoneListById(List<String> phoneIdList);
 }

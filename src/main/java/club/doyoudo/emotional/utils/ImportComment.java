@@ -2,6 +2,7 @@ package club.doyoudo.emotional.utils;
 
 import club.doyoudo.emotional.model.Comment;
 import club.doyoudo.emotional.model.Phone;
+import club.doyoudo.emotional.model.PhoneExample;
 import club.doyoudo.emotional.service.CommentService;
 import club.doyoudo.emotional.service.PhoneService;
 import lombok.Data;
@@ -37,6 +38,14 @@ public class ImportComment {
             String model = fileName.split("\\.")[0];
             Phone phone = new Phone();
             phone.setModel(model);
+            //如果存在该机型就不继续了，跳过
+            PhoneExample phoneExample = new PhoneExample();
+            phoneExample.createCriteria().andModelEqualTo(model);
+            if(phoneServiceImpl.selectPhoneListByExample(phoneExample).size()>0){
+                System.out.println("yes,exists");
+                continue;
+            }
+
             String phoneId = (String) phoneServiceImpl.insertPhone(phone).getData();
 
             //加载评论

@@ -34,7 +34,7 @@ public interface AnalysisService {
     ResponseWrapper analyseNegative(LocalDateTime start, LocalDateTime end, Integer num);
 
     /**
-     * 对帖子评论回复进行情感倾向分析
+     * 对手机评论回复进行情感倾向分析
      *
      * @param phoneId
      * @return
@@ -42,7 +42,7 @@ public interface AnalysisService {
     Map<String, Double> analyseSentiment(String phoneId);
 
     /**
-     * 对某天的所有帖子进行评论观点抽取，用作定时任务，每天分析
+     * 对某天的所有手机进行评论观点抽取，用作定时任务，每天分析
      *
      * @param date
      * @return
