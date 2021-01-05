@@ -33,7 +33,8 @@ public class ImportComment {
 
     public void runImportComment() {
         for (String fileName:fileNames) {
-            String model = fileName.split(".")[0];
+            System.out.println(fileName);
+            String model = fileName.split("\\.")[0];
             Phone phone = new Phone();
             phone.setModel(model);
             String phoneId = (String) phoneServiceImpl.insertPhone(phone).getData();
