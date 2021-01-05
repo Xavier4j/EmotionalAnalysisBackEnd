@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="club.doyoudo.emotional.model.Comment">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="phone_id" jdbcType="VARCHAR" property="phoneId" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="club.doyoudo.emotional.model.Comment">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,8 +69,27 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, phone_id, content, create_time, is_delete
+    id, phone_id, create_time, is_delete
   </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="club.doyoudo.emotional.model.CommentExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="club.doyoudo.emotional.model.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -83,9 +104,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from comment
     where id = #{id,jdbcType=VARCHAR}
   </select>
@@ -100,10 +123,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="club.doyoudo.emotional.model.Comment">
-    insert into comment (id, phone_id, content, 
-      create_time, is_delete)
-    values (#{id,jdbcType=VARCHAR}, #{phoneId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIT})
+    insert into comment (id, phone_id, create_time, 
+      is_delete, content)
+    values (#{id,jdbcType=VARCHAR}, #{phoneId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="club.doyoudo.emotional.model.Comment">
     insert into comment
@@ -114,14 +137,14 @@
       <if test="phoneId != null">
         phone_id,
       </if>
-      <if test="content != null">
-        content,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
       <if test="isDelete != null">
         is_delete,
+      </if>
+      <if test="content != null">
+        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -131,14 +154,14 @@
       <if test="phoneId != null">
         #{phoneId,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -157,16 +180,27 @@
       <if test="record.phoneId != null">
         phone_id = #{record.phoneId,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
-      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=BIT},
       </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update comment
+    set id = #{record.id,jdbcType=VARCHAR},
+      phone_id = #{record.phoneId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -175,7 +209,6 @@
     update comment
     set id = #{record.id,jdbcType=VARCHAR},
       phone_id = #{record.phoneId,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=BIT}
     <if test="_parameter != null">
@@ -188,22 +221,29 @@
       <if test="phoneId != null">
         phone_id = #{phoneId,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=BIT},
       </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="club.doyoudo.emotional.model.Comment">
+    update comment
+    set phone_id = #{phoneId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIT},
+      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="club.doyoudo.emotional.model.Comment">
     update comment
     set phone_id = #{phoneId,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=BIT}
     where id = #{id,jdbcType=VARCHAR}

@@ -7,8 +7,6 @@ public class AnalysisSentiment {
 
     private String phoneId;
 
-    private String content;
-
     private LocalDateTime createTime;
 
     private Integer sentiment;
@@ -33,14 +31,6 @@ public class AnalysisSentiment {
 
     public void setPhoneId(String phoneId) {
         this.phoneId = phoneId == null ? null : phoneId.trim();
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 
     public LocalDateTime getCreateTime() {

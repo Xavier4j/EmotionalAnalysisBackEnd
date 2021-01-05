@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="club.doyoudo.emotional.model.AnalysisSentiment">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="phone_id" jdbcType="VARCHAR" property="phoneId" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="sentiment" jdbcType="INTEGER" property="sentiment" />
     <result column="positive_prob" jdbcType="DOUBLE" property="positiveProb" />
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, phone_id, content, create_time, sentiment, positive_prob, negative_prob, confidence
+    id, phone_id, create_time, sentiment, positive_prob, negative_prob, confidence
   </sql>
   <select id="selectByExample" parameterType="club.doyoudo.emotional.model.AnalysisSentimentExample" resultMap="BaseResultMap">
     select
@@ -103,12 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
-    insert into analysis_sentiment (id, phone_id, content, 
-      create_time, sentiment, positive_prob, 
-      negative_prob, confidence)
-    values (#{id,jdbcType=VARCHAR}, #{phoneId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{sentiment,jdbcType=INTEGER}, #{positiveProb,jdbcType=DOUBLE}, 
-      #{negativeProb,jdbcType=DOUBLE}, #{confidence,jdbcType=DOUBLE})
+    insert into analysis_sentiment (id, phone_id, create_time, 
+      sentiment, positive_prob, negative_prob, 
+      confidence)
+    values (#{id,jdbcType=VARCHAR}, #{phoneId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{sentiment,jdbcType=INTEGER}, #{positiveProb,jdbcType=DOUBLE}, #{negativeProb,jdbcType=DOUBLE}, 
+      #{confidence,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
     insert into analysis_sentiment
@@ -118,9 +117,6 @@
       </if>
       <if test="phoneId != null">
         phone_id,
-      </if>
-      <if test="content != null">
-        content,
       </if>
       <if test="createTime != null">
         create_time,
@@ -144,9 +140,6 @@
       </if>
       <if test="phoneId != null">
         #{phoneId,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -180,9 +173,6 @@
       <if test="record.phoneId != null">
         phone_id = #{record.phoneId,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
-      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -207,7 +197,6 @@
     update analysis_sentiment
     set id = #{record.id,jdbcType=VARCHAR},
       phone_id = #{record.phoneId,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       sentiment = #{record.sentiment,jdbcType=INTEGER},
       positive_prob = #{record.positiveProb,jdbcType=DOUBLE},
@@ -222,9 +211,6 @@
     <set>
       <if test="phoneId != null">
         phone_id = #{phoneId,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -247,7 +233,6 @@
   <update id="updateByPrimaryKey" parameterType="club.doyoudo.emotional.model.AnalysisSentiment">
     update analysis_sentiment
     set phone_id = #{phoneId,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       sentiment = #{sentiment,jdbcType=INTEGER},
       positive_prob = #{positiveProb,jdbcType=DOUBLE},

@@ -7,11 +7,11 @@ public class Comment {
 
     private String phoneId;
 
-    private String content;
-
     private LocalDateTime createTime;
 
     private Boolean isDelete;
+
+    private String content;
 
     public String getId() {
         return id;
@@ -29,14 +29,6 @@ public class Comment {
         this.phoneId = phoneId == null ? null : phoneId.trim();
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -51,5 +43,13 @@ public class Comment {
 
     public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 }

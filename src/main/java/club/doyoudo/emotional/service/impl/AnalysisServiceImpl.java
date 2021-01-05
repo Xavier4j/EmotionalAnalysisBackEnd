@@ -73,7 +73,6 @@ public class AnalysisServiceImpl implements AnalysisService {
                 analysisSentiment = new AnalysisSentiment();
                 analysisSentiment.setId( comment.getId() );
                 analysisSentiment.setPhoneId( comment.getPhoneId() );
-                analysisSentiment.setContent( comment.getContent() );
                 analysisSentiment.setCreateTime( comment.getCreateTime() );
                 analysisSentiment.setSentiment( item.getIntValue( "sentiment" ) );
                 analysisSentiment.setPositiveProb( item.getDouble( "positive_prob" ) );
@@ -183,7 +182,6 @@ public class AnalysisServiceImpl implements AnalysisService {
                 analysisSentiment = new AnalysisSentiment();
                 analysisSentiment.setId( comment.getId() );
                 analysisSentiment.setPhoneId( phoneId );
-                analysisSentiment.setContent( comment.getContent() );
                 analysisSentiment.setSentiment( item.getIntValue( "sentiment" ) );
                 analysisSentiment.setPositiveProb( item.getDouble( "positive_prob" ) );
                 analysisSentiment.setNegativeProb( item.getDouble( "negative_prob" ) );
