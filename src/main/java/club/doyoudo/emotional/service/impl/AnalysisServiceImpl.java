@@ -164,7 +164,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     public Map<String, Double> analyseSentiment(String phoneId) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria().andPhoneIdEqualTo( phoneId );
-        List<Comment> commentList = commentMapper.selectByExample( commentExample );
+        List<Comment> commentList = commentMapper.selectByExampleWithBLOBs( commentExample );
 
         HashMap<String, Object> options = new HashMap<>();
         List<AnalysisSentiment> analysisSentimentList = new ArrayList<>();
